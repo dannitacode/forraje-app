@@ -4,6 +4,14 @@
  */
 package com.forraje.igu;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
+import java.time.temporal.WeekFields;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  *
  * @author dannita
@@ -16,6 +24,7 @@ public class JDialogRecord extends javax.swing.JDialog {
     public JDialogRecord(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        Date date = fechaDefecto();
     }
 
     /**
@@ -78,6 +87,11 @@ public class JDialogRecord extends javax.swing.JDialog {
         jDateChooser.setForeground(new java.awt.Color(0, 0, 0));
         jDateChooser.setEnabled(false);
         jDateChooser.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
+        jDateChooser.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jDateChooserPropertyChange(evt);
+            }
+        });
         jPanel1.add(jDateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 120, -1));
 
         jLabel3.setFont(new java.awt.Font("Roboto", 0, 13)); // NOI18N
@@ -188,12 +202,33 @@ public class JDialogRecord extends javax.swing.JDialog {
         jCheckBoxEnableDate.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         jCheckBoxEnableDate.setForeground(new java.awt.Color(0, 0, 0));
         jCheckBoxEnableDate.setText("Modificar fecha");
+        jCheckBoxEnableDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxEnableDateActionPerformed(evt);
+            }
+        });
         jPanel1.add(jCheckBoxEnableDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jCheckBoxEnableDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxEnableDateActionPerformed
+        if (jCheckBoxEnableDate.isSelected()) {
+            jDateChooser.setEnabled(true);
+        } else {
+            jDateChooser.setEnabled(false);
+        }
+    }//GEN-LAST:event_jCheckBoxEnableDateActionPerformed
+
+    private void jDateChooserPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooserPropertyChange
+        if("date".equals(evt.getPropertyName())) {
+            Date date = jDateChooser.getDate();
+            diaDefecto(date);
+            semanaDefecto(date);
+        }
+    }//GEN-LAST:event_jDateChooserPropertyChange
 
     /**
      * @param args the command line arguments
@@ -260,4 +295,22 @@ public class JDialogRecord extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldDay;
     private javax.swing.JTextField jTextFieldWeek;
     // End of variables declaration//GEN-END:variables
+
+    private Date fechaDefecto() {
+        LocalDate date = LocalDate.now();
+        Date dateDate = java.sql.Date.valueOf(date);
+        jDateChooser.setDate(dateDate);
+        return dateDate;
+    }
+    private void diaDefecto(Date date) {
+        LocalDate day = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        String dayName = day.getDayOfWeek().getDisplayName(TextStyle.FULL, new Locale("es", "ES"));
+        jTextFieldDay.setText(dayName);
+    }
+    private void semanaDefecto(Date date){
+        LocalDate week = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        WeekFields regWeeks = WeekFields.of(Locale.getDefault());
+        int weekNumber = week.get(regWeeks.weekOfWeekBasedYear());
+        jTextFieldWeek.setText(String.valueOf(weekNumber));
+    }
 }
