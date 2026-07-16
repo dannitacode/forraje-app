@@ -25,6 +25,7 @@ public class JDialogRecord extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         Date date = fechaDefecto();
+        fillComboBox();
     }
 
     /**
@@ -168,6 +169,11 @@ public class JDialogRecord extends javax.swing.JDialog {
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setFocusPainted(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -229,6 +235,10 @@ public class JDialogRecord extends javax.swing.JDialog {
             semanaDefecto(date);
         }
     }//GEN-LAST:event_jDateChooserPropertyChange
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -312,5 +322,10 @@ public class JDialogRecord extends javax.swing.JDialog {
         WeekFields regWeeks = WeekFields.of(Locale.getDefault());
         int weekNumber = week.get(regWeeks.weekOfWeekBasedYear());
         jTextFieldWeek.setText(String.valueOf(weekNumber));
+    }
+    private void fillComboBox(){
+        jComboBoxChooserPay.removeAllItems();
+        jComboBoxChooserPay.addItem("Efectivo");
+        jComboBoxChooserPay.addItem("Transferencia");
     }
 }
