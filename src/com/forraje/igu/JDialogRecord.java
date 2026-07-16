@@ -4,19 +4,21 @@
  */
 package com.forraje.igu;
 
+import com.forraje.persistencia.RegistroData;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.time.temporal.WeekFields;
 import java.util.Date;
 import java.util.Locale;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author dannita
  */
 public class JDialogRecord extends javax.swing.JDialog {
+    public RegistroData rd;
 
     /**
      * Creates new form JDialogRecord
@@ -24,8 +26,10 @@ public class JDialogRecord extends javax.swing.JDialog {
     public JDialogRecord(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        rd = new RegistroData();
         Date date = fechaDefecto();
-        fillComboBox();
+        fillComboBox1();
+        fillComboBox2();
     }
 
     /**
@@ -51,11 +55,13 @@ public class JDialogRecord extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaDetails = new javax.swing.JTextArea();
-        jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
         jCheckBoxEnableDate = new javax.swing.JCheckBox();
+        jLabel8 = new javax.swing.JLabel();
+        jComboBoxRecordType = new javax.swing.JComboBox<>();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -115,28 +121,28 @@ public class JDialogRecord extends javax.swing.JDialog {
 
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 13)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Modo de pago:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
+        jLabel5.setText("Tipo de registro:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
         jTextFieldAmount.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
-        jPanel1.add(jTextFieldAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 120, -1));
+        jPanel1.add(jTextFieldAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 120, -1));
 
         jLabel6.setFont(new java.awt.Font("Roboto", 0, 13)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Monto:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, -1));
 
         jComboBoxChooserPay.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxChooserPay.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         jComboBoxChooserPay.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxChooserPay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxChooserPay.setBorder(null);
-        jPanel1.add(jComboBoxChooserPay, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 120, -1));
+        jPanel1.add(jComboBoxChooserPay, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 120, -1));
 
         jLabel7.setFont(new java.awt.Font("Roboto", 0, 13)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Detalles:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, -1, -1));
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -149,16 +155,7 @@ public class JDialogRecord extends javax.swing.JDialog {
         jTextAreaDetails.setBorder(null);
         jScrollPane1.setViewportView(jTextAreaDetails);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 190, 50));
-
-        jButton2.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Guardar");
-        jButton2.setBorder(null);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setFocusPainted(false);
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 260, 80, 20));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 170, 50));
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -179,31 +176,44 @@ public class JDialogRecord extends javax.swing.JDialog {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 80, 20));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 80, 20));
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
+
+        jButton2.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Guardar");
+        jButton2.setBorder(null);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setFocusPainted(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 80, Short.MAX_VALUE)
+            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, 80, 20));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 80, 20));
 
         jCheckBoxEnableDate.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         jCheckBoxEnableDate.setForeground(new java.awt.Color(0, 0, 0));
@@ -215,7 +225,19 @@ public class JDialogRecord extends javax.swing.JDialog {
         });
         jPanel1.add(jCheckBoxEnableDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
+        jLabel8.setFont(new java.awt.Font("Roboto", 0, 13)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Modo de pago:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
+
+        jComboBoxRecordType.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxRecordType.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
+        jComboBoxRecordType.setForeground(new java.awt.Color(0, 0, 0));
+        jComboBoxRecordType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxRecordType.setBorder(null);
+        jPanel1.add(jComboBoxRecordType, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 120, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 330));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -239,6 +261,15 @@ public class JDialogRecord extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       try {
+           double monto = Double.parseDouble(jTextFieldAmount.getText());
+           
+       }catch (NumberFormatException nfe){
+           JOptionPane.showMessageDialog(this, "No escriba letras en el campo del monto!");
+       }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,6 +318,7 @@ public class JDialogRecord extends javax.swing.JDialog {
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBoxEnableDate;
     private javax.swing.JComboBox<String> jComboBoxChooserPay;
+    private javax.swing.JComboBox<String> jComboBoxRecordType;
     private com.toedter.calendar.JDateChooser jDateChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -295,6 +327,7 @@ public class JDialogRecord extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -323,7 +356,12 @@ public class JDialogRecord extends javax.swing.JDialog {
         int weekNumber = week.get(regWeeks.weekOfWeekBasedYear());
         jTextFieldWeek.setText(String.valueOf(weekNumber));
     }
-    private void fillComboBox(){
+    private void fillComboBox1(){
+        jComboBoxRecordType.removeAllItems();
+        jComboBoxRecordType.addItem("Ingreso");
+        jComboBoxRecordType.addItem("Egreso");
+    }
+    private void fillComboBox2(){
         jComboBoxChooserPay.removeAllItems();
         jComboBoxChooserPay.addItem("Efectivo");
         jComboBoxChooserPay.addItem("Transferencia");

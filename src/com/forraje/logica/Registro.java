@@ -6,7 +6,7 @@ import java.time.LocalDate;
  *
  * @author dannita
  */
-public class Operacion {
+public class Registro {
     
     private int id;
     private LocalDate fecha;
@@ -17,8 +17,7 @@ public class Operacion {
     private String modoDePago;
     private String detalles;
     
-    public Operacion(int nro, LocalDate f, String d, String s, String t, double mon, String modo, String details) {
-        id = nro;
+    public Registro(LocalDate f, String d, String s, String t, double mon, String modo, String details) {
         fecha = f;
         dia = d;
         semana = s;
