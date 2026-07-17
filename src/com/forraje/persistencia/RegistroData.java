@@ -2,11 +2,21 @@ package com.forraje.persistencia;
 
 import com.forraje.logica.Registro;
 import java.sql.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author dannita
  */
 public class RegistroData {
+    
+    private Registro r;
+    private List<Registro> listR;
+    
+    public RegistroData(){
+        this.listR = new ArrayList<>();
+    }
     
     public boolean crearRegistro(Registro r){
         String sql = "INSERT INTO Registro (fecha, dia, semana, tipo_registro, monto, modo_pago, detalles) VALUES (?,?,?,?,?,?,?)";
@@ -37,4 +47,27 @@ public class RegistroData {
         return true;
     }
     
+    public List<Registro> listarRegistros() {
+        String sql = "SELECT * FROM Registro";
+        try(Connection conn = DbConexion.establecerConexion(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            if(conn == null) return null;
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                String fechaStr = rs.getString("fecha");
+                LocalDate fechaParsed = LocalDate.parse(fechaStr);
+                String dia = rs.getString("dia");
+                int semana = rs.getInt("semana");
+                String tipo = rs.getString("tipo_registro");
+                double monto = rs.getDouble("monto");
+                String modo = rs.getString("modo_pago");
+                String detalles = rs.getString("detalles");
+                r = new Registro(fechaParsed, dia, semana, tipo, monto, modo, detalles);
+                r.setId(rs.getInt("id"));
+                listR.add(r);
+            }
+        } catch(SQLException err){
+            System.out.println("[!] Ocurrio un error inesperado: " + err.getMessage());
+        }
+        return listR;
+    }
 }
