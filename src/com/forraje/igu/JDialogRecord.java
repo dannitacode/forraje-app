@@ -4,6 +4,8 @@
  */
 package com.forraje.igu;
 
+import com.forraje.logica.Registro;
+import com.forraje.persistencia.DbConexion;
 import com.forraje.persistencia.RegistroData;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -223,7 +225,7 @@ public class JDialogRecord extends javax.swing.JDialog {
                 jCheckBoxEnableDateActionPerformed(evt);
             }
         });
-        jPanel1.add(jCheckBoxEnableDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, -1, -1));
+        jPanel1.add(jCheckBoxEnableDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Roboto", 0, 13)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
@@ -264,10 +266,17 @@ public class JDialogRecord extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        try {
+           LocalDate date = jDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+           int semana = Integer.parseInt(jTextFieldWeek.getText());
+           String dia = jTextFieldDay.getText();
+           String tipo = (String) jComboBoxRecordType.getSelectedItem();
            double monto = Double.parseDouble(jTextFieldAmount.getText());
-           
+           String modo = (String) jComboBoxChooserPay.getSelectedItem();
+           String details = jTextAreaDetails.getText();
+           rd.crearRegistro(new Registro(date, dia, semana, tipo, monto, modo, details));
        }catch (NumberFormatException nfe){
-           JOptionPane.showMessageDialog(this, "No escriba letras en el campo del monto!");
+           JOptionPane.showMessageDialog(this, "Hay uno o mas campos con caracteres invalidos!");
+           System.out.println("[!] Error: "+ nfe.getMessage());
        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
