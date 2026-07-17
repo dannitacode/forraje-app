@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package com.forraje.igu;
 
 import com.forraje.logica.Registro;
-import com.forraje.persistencia.DbConexion;
 import com.forraje.persistencia.RegistroData;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -178,14 +173,14 @@ public class JDialogRecord extends javax.swing.JDialog {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 80, 20));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 80, 20));
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -206,7 +201,7 @@ public class JDialogRecord extends javax.swing.JDialog {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,7 +210,7 @@ public class JDialogRecord extends javax.swing.JDialog {
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 80, 20));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, 80, 20));
 
         jCheckBoxEnableDate.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         jCheckBoxEnableDate.setForeground(new java.awt.Color(0, 0, 0));
@@ -265,18 +260,27 @@ public class JDialogRecord extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       try {
-           LocalDate date = jDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-           int semana = Integer.parseInt(jTextFieldWeek.getText());
-           String dia = jTextFieldDay.getText();
-           String tipo = (String) jComboBoxRecordType.getSelectedItem();
+        LocalDate date = jDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        String dia = jTextFieldDay.getText();
+        int semana = Integer.parseInt(jTextFieldWeek.getText());
+        String tipoRegistro = (String) jComboBoxRecordType.getSelectedItem();
+        String modoPago = (String) jComboBoxChooserPay.getSelectedItem();
+        String detalles = jTextAreaDetails.getText();
+        try {
            double monto = Double.parseDouble(jTextFieldAmount.getText());
-           String modo = (String) jComboBoxChooserPay.getSelectedItem();
-           String details = jTextAreaDetails.getText();
-           rd.crearRegistro(new Registro(date, dia, semana, tipo, monto, modo, details));
-       }catch (NumberFormatException nfe){
-           JOptionPane.showMessageDialog(this, "Hay uno o mas campos con caracteres invalidos!");
-           System.out.println("[!] Error: "+ nfe.getMessage());
+           boolean flag = rd.crearRegistro(new Registro(date, dia, semana, tipoRegistro, monto, modoPago, detalles));
+           if(flag){
+               int confirm = JOptionPane.showConfirmDialog(this, "Registro creado con exito! ¿Desea crear otro?", "Success", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+               switch(confirm){
+                   case JOptionPane.NO_OPTION:
+                       dispose();
+                   case JOptionPane.YES_OPTION:
+                       jTextFieldAmount.setText(null);
+                       break;
+               }
+           }
+        }catch (NumberFormatException nfe){
+           JOptionPane.showMessageDialog(this, "Ingrese un monto valido!");
        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
