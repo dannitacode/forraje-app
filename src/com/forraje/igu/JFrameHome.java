@@ -76,6 +76,11 @@ public class JFrameHome extends javax.swing.JFrame {
         jButton2.setContentAreaFilled(false);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setFocusPainted(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1BgButton2Layout = new javax.swing.GroupLayout(jPanel1BgButton2);
         jPanel1BgButton2.setLayout(jPanel1BgButton2Layout);
@@ -127,6 +132,12 @@ public class JFrameHome extends javax.swing.JFrame {
         jdr.setLocationRelativeTo(this);
         jdr.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        JDialogMngList jdl = new JDialogMngList(this, true);
+        jdl.setLocationRelativeTo(this);
+        jdl.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
