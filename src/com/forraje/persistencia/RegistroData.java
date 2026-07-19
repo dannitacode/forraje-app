@@ -12,11 +12,6 @@ import java.util.List;
 public class RegistroData {
     
     private Registro r;
-    private List<Registro> listR;
-    
-    public RegistroData(){
-        this.listR = new ArrayList<>();
-    }
     
     public boolean crearRegistro(Registro r){
         String sql = "INSERT INTO Registro (fecha, dia, semana, tipo_registro, monto, modo_pago, detalles) VALUES (?,?,?,?,?,?,?)";
@@ -48,6 +43,7 @@ public class RegistroData {
     }
     
     public List<Registro> listarRegistros() {
+        List<Registro> listR = new ArrayList<>();
         String sql = "SELECT * FROM Registro";
         try(Connection conn = DbConexion.establecerConexion(); PreparedStatement ps = conn.prepareStatement(sql)) {
             if(conn == null) return null;

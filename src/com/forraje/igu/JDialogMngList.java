@@ -7,8 +7,10 @@ package com.forraje.igu;
 import com.forraje.logica.Registro;
 import com.forraje.persistencia.RegistroData;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -36,12 +38,14 @@ public class JDialogMngList extends javax.swing.JDialog {
         initComponents();
         rd = new RegistroData();
         columns();
-        rows();
+        rows(null);
+        ((javax.swing.text.JTextComponent) jDateChooser.getDateEditor().getUiComponent()).setEditable(false);
         TableColumnModel columnModel = jTable.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(100);
         columnModel.getColumn(5).setPreferredWidth(120);
         columnModel.getColumn(6).setPreferredWidth(250);
         jTable.setRowHeight(30);
+
     }
 
     /**
@@ -61,6 +65,8 @@ public class JDialogMngList extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
+        jPanel5 = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -86,6 +92,11 @@ public class JDialogMngList extends javax.swing.JDialog {
         jDateChooser.setBackground(new java.awt.Color(255, 255, 255));
         jDateChooser.setForeground(new java.awt.Color(0, 0, 0));
         jDateChooser.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
+        jDateChooser.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jDateChooserPropertyChange(evt);
+            }
+        });
         jPanel1.add(jDateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 120, -1));
 
         jTextFieldWeek.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
@@ -105,7 +116,7 @@ public class JDialogMngList extends javax.swing.JDialog {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,7 +125,7 @@ public class JDialogMngList extends javax.swing.JDialog {
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 130, 20));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 130, 20));
 
         jTable.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         jTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -133,10 +144,57 @@ public class JDialogMngList extends javax.swing.JDialog {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 530, 190));
 
+        jPanel5.setBackground(new java.awt.Color(0, 0, 0));
+
+        jButton3.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Limpiar fecha");
+        jButton3.setBorder(null);
+        jButton3.setContentAreaFilled(false);
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.setFocusPainted(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 100, 20));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jDateChooserPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooserPropertyChange
+        if ("date".equals(evt.getPropertyName())) {
+            Date selDate = jDateChooser.getDate();
+            if (selDate != null) {
+                LocalDate date = selDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                rows(date);
+            } else {
+                rows(null);
+            }
+        }
+    }//GEN-LAST:event_jDateChooserPropertyChange
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        jDateChooser.setDate(null);
+        rows(null);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,12 +240,14 @@ public class JDialogMngList extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private com.toedter.calendar.JDateChooser jDateChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable;
     private javax.swing.JTextField jTextFieldWeek;
@@ -204,17 +264,20 @@ public class JDialogMngList extends javax.swing.JDialog {
         jTable.setModel(table);
     }
 
-    private void rows() {
+    private void rows(LocalDate date) {
         table.setRowCount(0);
         List<Registro> list = new ArrayList<>(rd.listarRegistros());
+        boolean aux = (date == null);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         for (Registro r : list) {
-            LocalDate date = LocalDate.parse(r.getFecha());
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            String formatedDate = date.format(formatter);
-            Object[] filas = {
-                formatedDate, r.getDia(), r.getSemana(), r.getTipo(), r.getMonto(), r.getModoDePago(), r.getDetalles()
-            };
-            table.addRow(filas);
+            LocalDate dateParsed = LocalDate.parse(r.getFecha());
+            if (aux || dateParsed.equals(date)) {
+                String formatedDate = dateParsed.format(formatter);
+                Object[] filas = {
+                    formatedDate, r.getDia(), r.getSemana(), r.getTipo(), r.getMonto(), r.getModoDePago(), r.getDetalles()
+                };
+                table.addRow(filas);
+            }
         }
     }
 }
