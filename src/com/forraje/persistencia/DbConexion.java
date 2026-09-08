@@ -28,6 +28,7 @@ public class DbConexion {
                 + "fecha TEXT NOT NULL,"
                 + "dia TEXT NOT NULL,"
                 + "semana INTEGER NOT NULL,"
+                + "registro TEXT NOT NULL,"
                 + "tipo_registro TEXT NOT NULL,"
                 + "monto REAL NOT NULL,"
                 + "modo_pago TEXT NOT NULL,"

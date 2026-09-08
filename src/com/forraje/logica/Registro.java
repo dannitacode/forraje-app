@@ -12,16 +12,18 @@ public class Registro {
     private LocalDate fecha;
     private String dia;
     private int semana;
-    private String tipo;
+    private String registro;
+    private String tipoRegistro;
     private double monto;
     private String modoDePago;
     private String detalles;
     
-    public Registro(LocalDate f, String d, int s, String t, double mon, String modo, String details) {
+    public Registro(LocalDate f, String d, int s, String reg, String tipoReg, double mon, String modo, String details) {
         fecha = f;
         dia = d;
         semana = s;
-        tipo = t;
+        registro = reg;
+        tipoRegistro = tipoReg;
         monto = mon;
         modoDePago = modo;
         detalles = details;
@@ -47,8 +49,12 @@ public class Registro {
         return semana;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getRegistro() {
+        return registro;
+    }
+    
+    public String getTipoRegistro() {
+        return tipoRegistro;
     }
 
     public double getMonto() {
@@ -63,11 +69,9 @@ public class Registro {
         return detalles;
     }
 
-    
-    
     @Override
     public String toString() {
-        return "Operacion{" + "id=" + id + ", fecha=" + fecha + ", dia=" + dia + ", semana=" + semana + ", tipo=" + tipo + ", monto=" + monto + ", modoDePago=" + modoDePago + ", detalles=" + detalles + '}';
+        return "Registro{" + "id=" + id + ", fecha=" + fecha + ", dia=" + dia + ", semana=" + semana + ", registro=" + registro + ", tipo=" + tipoRegistro + ", monto=" + monto + ", modoDePago=" + modoDePago + ", detalles=" + detalles + '}';
     }
     
     

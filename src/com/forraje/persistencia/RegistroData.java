@@ -14,16 +14,17 @@ public class RegistroData {
     private Registro r;
     
     public boolean crearRegistro(Registro r){
-        String sql = "INSERT INTO Registro (fecha, dia, semana, tipo_registro, monto, modo_pago, detalles) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Registro (fecha, dia, semana, registro, tipo_registro, monto, modo_pago, detalles) VALUES (?,?,?,?,?,?,?,?)";
         try(Connection conn = DbConexion.establecerConexion(); PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             if(conn == null) return false;
             ps.setString(1, r.getFecha());
             ps.setString(2, r.getDia());
             ps.setInt(3, r.getSemana());
-            ps.setString(4, r.getTipo());
-            ps.setDouble(5, r.getMonto());
-            ps.setString(6, r.getModoDePago());
-            ps.setString(7, r.getDetalles());
+            ps.setString (4, r.getRegistro());
+            ps.setString(5, r.getTipoRegistro());
+            ps.setDouble(6, r.getMonto());
+            ps.setString(7, r.getModoDePago());
+            ps.setString(8, r.getDetalles());
             int filas = ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (filas > 0) {
@@ -53,11 +54,12 @@ public class RegistroData {
                 LocalDate fechaParsed = LocalDate.parse(fechaStr);
                 String dia = rs.getString("dia");
                 int semana = rs.getInt("semana");
+                String registro = rs.getString("registro");
                 String tipo = rs.getString("tipo_registro");
                 double monto = rs.getDouble("monto");
                 String modo = rs.getString("modo_pago");
                 String detalles = rs.getString("detalles");
-                r = new Registro(fechaParsed, dia, semana, tipo, monto, modo, detalles);
+                r = new Registro(fechaParsed, dia, semana, registro, tipo, monto, modo, detalles);
                 r.setId(rs.getInt("id"));
                 listR.add(r);
             }
