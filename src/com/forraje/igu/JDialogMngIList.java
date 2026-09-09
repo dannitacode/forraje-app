@@ -19,7 +19,7 @@ import javax.swing.table.TableColumnModel;
  *
  * @author dannita
  */
-public class JDialogMngList extends javax.swing.JDialog {
+public class JDialogMngIList extends javax.swing.JDialog {
 
     private RegistroData rd;
 
@@ -33,17 +33,20 @@ public class JDialogMngList extends javax.swing.JDialog {
     /**
      * Creates new form JDialogMngList
      */
-    public JDialogMngList(java.awt.Frame parent, boolean modal) {
+    public JDialogMngIList(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         rd = new RegistroData();
         columns();
-        rows(null);
+        fillComboBox1();
+        rows(null, 0);
         ((javax.swing.text.JTextComponent) jDateChooser.getDateEditor().getUiComponent()).setEditable(false);
         TableColumnModel columnModel = jTable.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(100);
-        columnModel.getColumn(5).setPreferredWidth(120);
-        columnModel.getColumn(6).setPreferredWidth(250);
+        columnModel.getColumn(4).setPreferredWidth(100);
+        columnModel.getColumn(5).setPreferredWidth(80);
+        columnModel.getColumn(6).setPreferredWidth(100);
+        columnModel.getColumn(7).setPreferredWidth(250);
         jTable.setRowHeight(30);
 
     }
@@ -60,13 +63,13 @@ public class JDialogMngList extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jDateChooser = new com.toedter.calendar.JDateChooser();
-        jTextFieldWeek = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
+        jComboBoxMonths = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -86,7 +89,7 @@ public class JDialogMngList extends javax.swing.JDialog {
 
         jLabel3.setFont(new java.awt.Font("Roboto", 0, 13)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Filtrar por semana:");
+        jLabel3.setText("Filtrar por mes:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
         jDateChooser.setBackground(new java.awt.Color(255, 255, 255));
@@ -99,9 +102,6 @@ public class JDialogMngList extends javax.swing.JDialog {
         });
         jPanel1.add(jDateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 120, -1));
 
-        jTextFieldWeek.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
-        jPanel1.add(jTextFieldWeek, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 120, -1));
-
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
         jButton2.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
@@ -109,7 +109,7 @@ public class JDialogMngList extends javax.swing.JDialog {
         jButton2.setText("Modificar registro");
         jButton2.setBorder(null);
         jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton2.setFocusPainted(false);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -151,7 +151,7 @@ public class JDialogMngList extends javax.swing.JDialog {
         jButton3.setText("Limpiar fecha");
         jButton3.setBorder(null);
         jButton3.setContentAreaFilled(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton3.setFocusPainted(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,13 +174,24 @@ public class JDialogMngList extends javax.swing.JDialog {
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 100, 20));
 
+        jComboBoxMonths.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxMonths.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        jComboBoxMonths.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxMonths.setSelectedIndex(-1);
+        jComboBoxMonths.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxMonthsItemStateChanged(evt);
+            }
+        });
+        jPanel1.add(jComboBoxMonths, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 120, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jDateChooserPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooserPropertyChange
-        if ("date".equals(evt.getPropertyName())) {
+        /*if ("date".equals(evt.getPropertyName())) {
             Date selDate = jDateChooser.getDate();
             if (selDate != null) {
                 LocalDate date = selDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -188,13 +199,20 @@ public class JDialogMngList extends javax.swing.JDialog {
             } else {
                 rows(null);
             }
-        }
+        }*/
     }//GEN-LAST:event_jDateChooserPropertyChange
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         jDateChooser.setDate(null);
-        rows(null);
+        rows(null,0);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jComboBoxMonthsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMonthsItemStateChanged
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+            int selec = jComboBoxMonths.getSelectedIndex() + 1;
+                rows(jDateChooser.getDate()==null ? null :jDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate() ,selec);
+        }
+    }//GEN-LAST:event_jComboBoxMonthsItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -213,20 +231,21 @@ public class JDialogMngList extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDialogMngList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDialogMngIList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDialogMngList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDialogMngIList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDialogMngList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDialogMngIList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDialogMngList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDialogMngIList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDialogMngList dialog = new JDialogMngList(new javax.swing.JFrame(), true);
+                JDialogMngIList dialog = new JDialogMngIList(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -241,6 +260,7 @@ public class JDialogMngList extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jComboBoxMonths;
     private com.toedter.calendar.JDateChooser jDateChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -250,9 +270,25 @@ public class JDialogMngList extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable;
-    private javax.swing.JTextField jTextFieldWeek;
     // End of variables declaration//GEN-END:variables
 
+    
+    private void fillComboBox1() {
+        jComboBoxMonths.removeAllItems();
+        jComboBoxMonths.addItem("Enero");
+        jComboBoxMonths.addItem("Febrero");
+        jComboBoxMonths.addItem("Marzo");
+        jComboBoxMonths.addItem("Abril");
+        jComboBoxMonths.addItem("Mayo");
+        jComboBoxMonths.addItem("Junio");
+        jComboBoxMonths.addItem("Julio");
+        jComboBoxMonths.addItem("Agosto");
+        jComboBoxMonths.addItem("Septiembre");
+        jComboBoxMonths.addItem("Octubre");
+        jComboBoxMonths.addItem("Noviembre");
+        jComboBoxMonths.addItem("Diciembre");
+    }
+    
     private void columns() {
         table.addColumn("Fecha");
         table.addColumn("Dia");
@@ -265,14 +301,15 @@ public class JDialogMngList extends javax.swing.JDialog {
         jTable.setModel(table);
     }
 
-    private void rows(LocalDate date) {
+    private void rows(LocalDate date, int month) {
         table.setRowCount(0);
         List<Registro> list = new ArrayList<>(rd.listarRegistros());
         boolean aux = (date == null);
+        boolean aux2 = (month == 0);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         for (Registro r : list) {
             LocalDate dateParsed = LocalDate.parse(r.getFecha());
-            if (aux || dateParsed.equals(date)) {
+            if ((aux || dateParsed.equals(date)) && (aux2 || dateParsed.getMonthValue() == month) && r.getRegistro().equals("Ingreso")) {
                 String formatedDate = dateParsed.format(formatter);
                 Object[] filas = {
                     formatedDate, r.getDia(), r.getSemana(), r.getRegistro(), r.getTipoRegistro(), r.getMonto(), r.getModoDePago(), r.getDetalles()
@@ -281,4 +318,5 @@ public class JDialogMngList extends javax.swing.JDialog {
             }
         }
     }
+    
 }
