@@ -42,10 +42,10 @@ public class JFrameHome extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Quicksand Medium", 0, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Registrar nuevo ingreso/egreso");
+        jButton1.setText("Crear nuevo registro");
         jButton1.setBorder(null);
         jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setFocusPainted(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,10 +71,10 @@ public class JFrameHome extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Quicksand Medium", 0, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setText("Ver lista de ingresos/egresos");
+        jButton2.setText("Ver lista de ingresos");
         jButton2.setBorder(null);
         jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setFocusPainted(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,7 +86,9 @@ public class JFrameHome extends javax.swing.JFrame {
         jPanel1BgButton2.setLayout(jPanel1BgButton2Layout);
         jPanel1BgButton2Layout.setHorizontalGroup(
             jPanel1BgButton2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+            .addGroup(jPanel1BgButton2Layout.createSequentialGroup()
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 15, Short.MAX_VALUE))
         );
         jPanel1BgButton2Layout.setVerticalGroup(
             jPanel1BgButton2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,25 +105,27 @@ public class JFrameHome extends javax.swing.JFrame {
         jButton3.setText("Ver división de fondos");
         jButton3.setBorder(null);
         jButton3.setContentAreaFilled(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.setFocusPainted(false);
 
         javax.swing.GroupLayout jPanelBgButton3Layout = new javax.swing.GroupLayout(jPanelBgButton3);
         jPanelBgButton3.setLayout(jPanelBgButton3Layout);
         jPanelBgButton3Layout.setHorizontalGroup(
             jPanelBgButton3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+            .addGroup(jPanelBgButton3Layout.createSequentialGroup()
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 16, Short.MAX_VALUE))
         );
         jPanelBgButton3Layout.setVerticalGroup(
             jPanelBgButton3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanelBgButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 250, 30));
+        getContentPane().add(jPanelBgButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 250, 30));
 
-        jLabel1Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/forraje/img/woman-sheeperd-(1).jpg"))); // NOI18N
+        jLabel1Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/forraje/img/woman-sheeperd.jpg"))); // NOI18N
         jLabel1Background.setText("jLabel1");
-        getContentPane().add(jLabel1Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 420));
+        getContentPane().add(jLabel1Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 645, 430));
 
         pack();
         setLocationRelativeTo(null);

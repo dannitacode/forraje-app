@@ -67,7 +67,6 @@ public class JDialogMngList extends javax.swing.JDialog {
         jTable = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
-        jSpinner1 = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -77,7 +76,7 @@ public class JDialogMngList extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Gestión de ingresos y egresos");
+        jLabel1.setText("Gestión de ingresos");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 17, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Roboto", 0, 13)); // NOI18N
@@ -101,7 +100,7 @@ public class JDialogMngList extends javax.swing.JDialog {
         jPanel1.add(jDateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 120, -1));
 
         jTextFieldWeek.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
-        jPanel1.add(jTextFieldWeek, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 120, -1));
+        jPanel1.add(jTextFieldWeek, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 120, -1));
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -143,7 +142,7 @@ public class JDialogMngList extends javax.swing.JDialog {
         jTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(jTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 530, 190));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 600, 220));
 
         jPanel5.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -174,9 +173,8 @@ public class JDialogMngList extends javax.swing.JDialog {
         );
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 100, 20));
-        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 70, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 380));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -251,7 +249,6 @@ public class JDialogMngList extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTable jTable;
     private javax.swing.JTextField jTextFieldWeek;
     // End of variables declaration//GEN-END:variables
