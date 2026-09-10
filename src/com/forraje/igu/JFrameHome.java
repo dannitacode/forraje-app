@@ -59,16 +59,14 @@ public class JFrameHome extends javax.swing.JFrame {
         jPanelBgButton1.setLayout(jPanelBgButton1Layout);
         jPanelBgButton1Layout.setHorizontalGroup(
             jPanelBgButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelBgButton1Layout.createSequentialGroup()
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
         );
         jPanelBgButton1Layout.setVerticalGroup(
             jPanelBgButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanelBgButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 250, 30));
+        getContentPane().add(jPanelBgButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 250, 30));
 
         jPanel1BgButton2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -97,7 +95,7 @@ public class JFrameHome extends javax.swing.JFrame {
             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1BgButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 250, 30));
+        getContentPane().add(jPanel1BgButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 250, 30));
 
         jPanelBgButton3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -114,16 +112,14 @@ public class JFrameHome extends javax.swing.JFrame {
         jPanelBgButton3.setLayout(jPanelBgButton3Layout);
         jPanelBgButton3Layout.setHorizontalGroup(
             jPanelBgButton3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelBgButton3Layout.createSequentialGroup()
-                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
         );
         jPanelBgButton3Layout.setVerticalGroup(
             jPanelBgButton3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanelBgButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 250, 30));
+        getContentPane().add(jPanelBgButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 250, 30));
 
         jPanelBgButton4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -152,7 +148,7 @@ public class JFrameHome extends javax.swing.JFrame {
             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanelBgButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 250, 30));
+        getContentPane().add(jPanelBgButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 250, 30));
 
         jLabel1Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/forraje/img/woman-sheeperd.jpg"))); // NOI18N
         jLabel1Background.setText("jLabel1");
