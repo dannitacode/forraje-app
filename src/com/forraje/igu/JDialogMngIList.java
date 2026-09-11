@@ -73,8 +73,8 @@ public class JDialogMngIList extends javax.swing.JDialog {
         jTable = new javax.swing.JTable();
         jPanelBgButton5 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
-        jComboBoxMonths = new javax.swing.JComboBox<>();
         jComboBoxFilters = new javax.swing.JComboBox<>();
+        jComboBoxMonths = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -90,12 +90,12 @@ public class JDialogMngIList extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Roboto", 0, 13)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Filtrar por:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 70, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 60, -1));
 
         jLabel3.setFont(new java.awt.Font("Roboto", 0, 13)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Mes:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 50, -1));
+        jLabel3.setText("Fecha:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 90, 40, -1));
 
         jDateChooser.setBackground(new java.awt.Color(255, 255, 255));
         jDateChooser.setForeground(new java.awt.Color(0, 0, 0));
@@ -114,7 +114,7 @@ public class JDialogMngIList extends javax.swing.JDialog {
         jButton2.setText("Modificar registro");
         jButton2.setBorder(null);
         jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setFocusPainted(false);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -156,7 +156,7 @@ public class JDialogMngIList extends javax.swing.JDialog {
         jButton3.setText("Limpiar fecha");
         jButton3.setBorder(null);
         jButton3.setContentAreaFilled(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.setFocusPainted(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,42 +177,52 @@ public class JDialogMngIList extends javax.swing.JDialog {
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(jPanelBgButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 100, 20));
-
-        jComboBoxMonths.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBoxMonths.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
-        jComboBoxMonths.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBoxMonths, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 100, 20));
+        jPanel1.add(jPanelBgButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 100, 20));
 
         jComboBoxFilters.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBoxFilters.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        jComboBoxFilters.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
+        jComboBoxFilters.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxFilters.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxFilters.setBorder(null);
         jComboBoxFilters.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxFiltersItemStateChanged(evt);
             }
         });
-        jPanel1.add(jComboBoxFilters, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 100, 20));
+        jPanel1.add(jComboBoxFilters, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 110, 20));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 420));
+        jComboBoxMonths.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxMonths.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
+        jComboBoxMonths.setForeground(new java.awt.Color(0, 0, 0));
+        jComboBoxMonths.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxMonths.setBorder(null);
+        jComboBoxMonths.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxMonthsItemStateChanged(evt);
+            }
+        });
+        jPanel1.add(jComboBoxMonths, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 110, 20));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 430));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jDateChooserPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooserPropertyChange
-        /*if ("date".equals(evt.getPropertyName())) {
+        if ("date".equals(evt.getPropertyName())) {
             Date selDate = jDateChooser.getDate();
             if (selDate != null) {
                 LocalDate date = selDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                rows(date);
+                rows(jDateChooser.getDate() == null ? null : jDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 0);
             } else {
-                rows(null);
+                rows(null,0);
             }
-        }*/
+        }
     }//GEN-LAST:event_jDateChooserPropertyChange
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         jDateChooser.setDate(null);
+        jComboBoxMonths.setSelectedIndex(0);
         rows(null, 0);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -228,16 +238,10 @@ public class JDialogMngIList extends javax.swing.JDialog {
             int selec = jComboBoxFilters.getSelectedIndex();
             if (selec == 0) {
                 jComboBoxMonths.setVisible(false);
-                jLabel3.setText("Fecha:");
-                jDateChooser.setVisible(true);
-                jPanelBgButton5.setVisible(true);
-                jButton3.setVisible(true);
+                fieldDateVisibility();
             } else {
-                jPanelBgButton5.setVisible(false);
-                jButton3.setVisible(false);
                 jDateChooser.setVisible(false);
-                jLabel3.setText("Mes:");
-                jComboBoxMonths.setVisible(true);
+                fieldMonthVisibility();
             }
         }
     }//GEN-LAST:event_jComboBoxFiltersItemStateChanged
@@ -301,8 +305,14 @@ public class JDialogMngIList extends javax.swing.JDialog {
     private javax.swing.JTable jTable;
     // End of variables declaration//GEN-END:variables
 
-    fieldMonthVisibility() {
-        
+    
+    
+    
+    private void fieldMonthVisibility() {
+        jLabel3.setText("Mes:");
+        jComboBoxMonths.setVisible(true);
+        jPanelBgButton5.setVisible(true);
+        jButton3.setVisible(true);
     }
     
     private void fieldDateVisibility() {
