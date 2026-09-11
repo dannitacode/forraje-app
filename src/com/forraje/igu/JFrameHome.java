@@ -30,6 +30,8 @@ public class JFrameHome extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jPanelBgButton3 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
+        jPanelBgButton4 = new javax.swing.JPanel();
+        jButton4 = new javax.swing.JButton();
         jLabel1Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -86,16 +88,14 @@ public class JFrameHome extends javax.swing.JFrame {
         jPanel1BgButton2.setLayout(jPanel1BgButton2Layout);
         jPanel1BgButton2Layout.setHorizontalGroup(
             jPanel1BgButton2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1BgButton2Layout.createSequentialGroup()
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 15, Short.MAX_VALUE))
+            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
         );
         jPanel1BgButton2Layout.setVerticalGroup(
             jPanel1BgButton2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1BgButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 250, 30));
+        getContentPane().add(jPanel1BgButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 250, 30));
 
         jPanelBgButton3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -112,16 +112,43 @@ public class JFrameHome extends javax.swing.JFrame {
         jPanelBgButton3.setLayout(jPanelBgButton3Layout);
         jPanelBgButton3Layout.setHorizontalGroup(
             jPanelBgButton3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelBgButton3Layout.createSequentialGroup()
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 16, Short.MAX_VALUE))
+            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
         );
         jPanelBgButton3Layout.setVerticalGroup(
             jPanelBgButton3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanelBgButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 250, 30));
+        getContentPane().add(jPanelBgButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 250, 30));
+
+        jPanelBgButton4.setBackground(new java.awt.Color(255, 255, 255));
+
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
+        jButton4.setFont(new java.awt.Font("Quicksand Medium", 0, 12)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(0, 0, 0));
+        jButton4.setText("Ver lista de egresos");
+        jButton4.setBorder(null);
+        jButton4.setContentAreaFilled(false);
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.setFocusPainted(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelBgButton4Layout = new javax.swing.GroupLayout(jPanelBgButton4);
+        jPanelBgButton4.setLayout(jPanelBgButton4Layout);
+        jPanelBgButton4Layout.setHorizontalGroup(
+            jPanelBgButton4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+        );
+        jPanelBgButton4Layout.setVerticalGroup(
+            jPanelBgButton4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanelBgButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 250, 30));
 
         jLabel1Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/forraje/img/woman-sheeperd.jpg"))); // NOI18N
         jLabel1Background.setText("jLabel1");
@@ -138,15 +165,15 @@ public class JFrameHome extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        JDialogMngIList jdl = new JDialogMngIList(this, true);
-        jdl.setLocationRelativeTo(this);
-        jdl.setVisible(true);
+        JDialogMngIList jdli = new JDialogMngIList(this, true);
+        jdli.setLocationRelativeTo(this);
+        jdli.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        JDialogMngEList jdel = new JDialogMngEList(this, true);
-        jdel.setLocationRelativeTo(this);
-        jdel.setVisible(true);
+        JDialogMngEList jdle = new JDialogMngEList(this, true);
+        jdle.setLocationRelativeTo(this);
+        jdle.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
@@ -188,9 +215,11 @@ public class JFrameHome extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1Background;
     private javax.swing.JPanel jPanel1BgButton2;
     private javax.swing.JPanel jPanelBgButton1;
     private javax.swing.JPanel jPanelBgButton3;
+    private javax.swing.JPanel jPanelBgButton4;
     // End of variables declaration//GEN-END:variables
 }
