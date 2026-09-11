@@ -26,12 +26,19 @@ public class JFrameHome extends javax.swing.JFrame {
 
         jPanelBgButton1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jPanel1BgButton2 = new javax.swing.JPanel();
+        jPanelBgButton2 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jPanelBgButton3 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jPanelBgButton4 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
+        jPanelBgButton5 = new javax.swing.JPanel();
+        jLabelEfect = new javax.swing.JLabel();
+        jLabelVirtual = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabelCurrency = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabelCurrency2 = new javax.swing.JLabel();
         jLabel1Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,9 +73,9 @@ public class JFrameHome extends javax.swing.JFrame {
             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanelBgButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 250, 30));
+        getContentPane().add(jPanelBgButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 250, 30));
 
-        jPanel1BgButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelBgButton2.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Quicksand Medium", 0, 12)); // NOI18N
@@ -84,18 +91,18 @@ public class JFrameHome extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1BgButton2Layout = new javax.swing.GroupLayout(jPanel1BgButton2);
-        jPanel1BgButton2.setLayout(jPanel1BgButton2Layout);
-        jPanel1BgButton2Layout.setHorizontalGroup(
-            jPanel1BgButton2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelBgButton2Layout = new javax.swing.GroupLayout(jPanelBgButton2);
+        jPanelBgButton2.setLayout(jPanelBgButton2Layout);
+        jPanelBgButton2Layout.setHorizontalGroup(
+            jPanelBgButton2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
         );
-        jPanel1BgButton2Layout.setVerticalGroup(
-            jPanel1BgButton2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelBgButton2Layout.setVerticalGroup(
+            jPanelBgButton2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1BgButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 250, 30));
+        getContentPane().add(jPanelBgButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 250, 30));
 
         jPanelBgButton3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -119,7 +126,7 @@ public class JFrameHome extends javax.swing.JFrame {
             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanelBgButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 250, 30));
+        getContentPane().add(jPanelBgButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 250, 30));
 
         jPanelBgButton4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -148,7 +155,88 @@ public class JFrameHome extends javax.swing.JFrame {
             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanelBgButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 250, 30));
+        getContentPane().add(jPanelBgButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 250, 30));
+
+        jPanelBgButton5.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabelEfect.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
+        jLabelEfect.setText("Efectivo:");
+
+        jLabelVirtual.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
+        jLabelVirtual.setText("BIlletera virtual:");
+
+        jLabelCurrency.setText("jLabel3");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabelCurrency, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelCurrency, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jLabelCurrency2.setText("jLabel3");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabelCurrency2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelCurrency2, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanelBgButton5Layout = new javax.swing.GroupLayout(jPanelBgButton5);
+        jPanelBgButton5.setLayout(jPanelBgButton5Layout);
+        jPanelBgButton5Layout.setHorizontalGroup(
+            jPanelBgButton5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelBgButton5Layout.createSequentialGroup()
+                .addGroup(jPanelBgButton5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanelBgButton5Layout.createSequentialGroup()
+                .addGroup(jPanelBgButton5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelBgButton5Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabelEfect))
+                    .addGroup(jPanelBgButton5Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabelVirtual)))
+                .addContainerGap(68, Short.MAX_VALUE))
+        );
+        jPanelBgButton5Layout.setVerticalGroup(
+            jPanelBgButton5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelBgButton5Layout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addComponent(jLabelEfect)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addComponent(jLabelVirtual)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(145, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanelBgButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 230, 430));
 
         jLabel1Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/forraje/img/woman-sheeperd.jpg"))); // NOI18N
         jLabel1Background.setText("jLabel1");
@@ -217,9 +305,16 @@ public class JFrameHome extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1Background;
-    private javax.swing.JPanel jPanel1BgButton2;
+    private javax.swing.JLabel jLabelCurrency;
+    private javax.swing.JLabel jLabelCurrency2;
+    private javax.swing.JLabel jLabelEfect;
+    private javax.swing.JLabel jLabelVirtual;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelBgButton1;
+    private javax.swing.JPanel jPanelBgButton2;
     private javax.swing.JPanel jPanelBgButton3;
     private javax.swing.JPanel jPanelBgButton4;
+    private javax.swing.JPanel jPanelBgButton5;
     // End of variables declaration//GEN-END:variables
 }
