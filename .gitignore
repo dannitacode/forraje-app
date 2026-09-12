@@ -15,6 +15,8 @@
 *.jar
 
 *.log
+*.csv
+*.py
 
 /nbproject/private/
 /build/
