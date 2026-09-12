@@ -4,17 +4,24 @@
  */
 package com.forraje.igu;
 
+import com.forraje.persistencia.RegistroData;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 /**
  *
  * @author dannita
  */
 public class JFrameHome extends javax.swing.JFrame {
+    private RegistroData registerData;
 
     /**
      * Creates new form JFrameHome
      */
     public JFrameHome() {
         initComponents();
+        registerData = new RegistroData();
+        cargarSaldos();
     }
 
     /**
@@ -44,6 +51,13 @@ public class JFrameHome extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Home");
         setResizable(false);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanelBgButton1.setBackground(new java.awt.Color(255, 255, 255));
@@ -160,11 +174,15 @@ public class JFrameHome extends javax.swing.JFrame {
         jPanelBgButton5.setBackground(new java.awt.Color(51, 51, 51));
 
         jLabelEfect.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
+        jLabelEfect.setForeground(new java.awt.Color(255, 255, 255));
         jLabelEfect.setText("Efectivo:");
 
         jLabelVirtual.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
+        jLabelVirtual.setForeground(new java.awt.Color(255, 255, 255));
         jLabelVirtual.setText("BIlletera virtual:");
 
+        jLabelCurrency.setFont(new java.awt.Font("Quicksand Light", 1, 18)); // NOI18N
+        jLabelCurrency.setForeground(new java.awt.Color(0, 0, 0));
         jLabelCurrency.setText("jLabel3");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -184,6 +202,8 @@ public class JFrameHome extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabelCurrency2.setFont(new java.awt.Font("Quicksand Light", 1, 18)); // NOI18N
+        jLabelCurrency2.setForeground(new java.awt.Color(0, 0, 0));
         jLabelCurrency2.setText("jLabel3");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -211,16 +231,13 @@ public class JFrameHome extends javax.swing.JFrame {
                 .addGroup(jPanelBgButton5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 35, Short.MAX_VALUE))
             .addGroup(jPanelBgButton5Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanelBgButton5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelBgButton5Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabelEfect))
-                    .addGroup(jPanelBgButton5Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabelVirtual)))
-                .addContainerGap(68, Short.MAX_VALUE))
+                    .addComponent(jLabelEfect)
+                    .addComponent(jLabelVirtual))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelBgButton5Layout.setVerticalGroup(
             jPanelBgButton5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,6 +280,10 @@ public class JFrameHome extends javax.swing.JFrame {
         jdle.setLocationRelativeTo(this);
         jdle.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        cargarSaldos();
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments
@@ -317,4 +338,12 @@ public class JFrameHome extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelBgButton4;
     private javax.swing.JPanel jPanelBgButton5;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarSaldos() {
+        double cash = registerData.obtenerSaldoPorModoPago("Efectivo");
+        double vW = registerData.obtenerSaldoPorModoPago("Transferencia");
+        NumberFormat formatoPesos = NumberFormat.getCurrencyInstance(new Locale("es", "AR"));
+        jLabelCurrency.setText(formatoPesos.format(cash));
+        jLabelCurrency2.setText(formatoPesos.format(vW));
+    }
 }
