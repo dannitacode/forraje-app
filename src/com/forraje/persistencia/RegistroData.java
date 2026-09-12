@@ -5,22 +5,25 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  *
  * @author dannita
  */
 public class RegistroData {
-    
+
     private Registro r;
-    
-    public boolean crearRegistro(Registro r){
+
+    public boolean crearRegistro(Registro r) {
         String sql = "INSERT INTO Registro (fecha, dia, semana, registro, tipo_registro, monto, modo_pago, detalles) VALUES (?,?,?,?,?,?,?,?)";
-        try(Connection conn = DbConexion.establecerConexion(); PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            if(conn == null) return false;
+        try (Connection conn = DbConexion.establecerConexion(); PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            if (conn == null) {
+                return false;
+            }
             ps.setString(1, r.getFecha());
             ps.setString(2, r.getDia());
             ps.setInt(3, r.getSemana());
-            ps.setString (4, r.getRegistro());
+            ps.setString(4, r.getRegistro());
             ps.setString(5, r.getTipoRegistro());
             ps.setDouble(6, r.getMonto());
             ps.setString(7, r.getModoDePago());
@@ -37,19 +40,21 @@ public class RegistroData {
             } else {
                 System.out.println("[!] No se pudo obtener el id del registro");
             }
-        } catch(SQLException err){
+        } catch (SQLException err) {
             System.out.println("[!] Ocurrio un error inesperado: " + err.getMessage());
         }
         return true;
     }
-    
+
     public List<Registro> listarRegistros() {
         List<Registro> listR = new ArrayList<>();
         String sql = "SELECT * FROM Registro";
-        try(Connection conn = DbConexion.establecerConexion(); PreparedStatement ps = conn.prepareStatement(sql)) {
-            if(conn == null) return null;
+        try (Connection conn = DbConexion.establecerConexion(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            if (conn == null) {
+                return null;
+            }
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 String fechaStr = rs.getString("fecha");
                 LocalDate fechaParsed = LocalDate.parse(fechaStr);
                 String dia = rs.getString("dia");
@@ -63,9 +68,24 @@ public class RegistroData {
                 r.setId(rs.getInt("id"));
                 listR.add(r);
             }
-        } catch(SQLException err){
+        } catch (SQLException err) {
             System.out.println("[!] Ocurrio un error inesperado: " + err.getMessage());
         }
         return listR;
+    }
+
+    public double obtenerSaldoPorModoPago(String modoPago) {
+        String sql = "SELECT SUM(CASE WHEN registro = 'Ingreso' THEN monto ELSE -monto END) AS saldo FROM Registro WHERE modo_pago = ?";
+        double saldo = 0.0;
+        try (Connection conn = DbConexion.establecerConexion(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, modoPago);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                saldo = rs.getDouble("saldo");
+            }
+        } catch (SQLException e) {
+            System.out.println("[!] Error al calcular saldo de " + modoPago + ": " + e.getMessage());
+        }
+        return saldo;
     }
 }
