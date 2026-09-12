@@ -6,12 +6,15 @@ package com.forraje.igu;
 
 import com.forraje.logica.Registro;
 import com.forraje.persistencia.RegistroData;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -43,16 +46,10 @@ public class JDialogMngIList extends javax.swing.JDialog {
         fillComboBox2();
         rows(null, 0);
         ((javax.swing.text.JTextComponent) jDateChooser.getDateEditor().getUiComponent()).setEditable(false);
-        TableColumnModel columnModel = jTable.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(100);
-        columnModel.getColumn(4).setPreferredWidth(100);
-        columnModel.getColumn(5).setPreferredWidth(80);
-        columnModel.getColumn(6).setPreferredWidth(100);
-        columnModel.getColumn(7).setPreferredWidth(250);
-        jTable.setRowHeight(30);
-
+        tablaSizes();
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screen);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -68,15 +65,19 @@ public class JDialogMngIList extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jDateChooser = new com.toedter.calendar.JDateChooser();
         jPanel4 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        jButtonModify = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
         jPanelBgButton5 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jComboBoxFilters = new javax.swing.JComboBox<>();
         jComboBoxMonths = new javax.swing.JComboBox<>();
+        jPanel5 = new javax.swing.JPanel();
+        jButtonDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Gestión de ingresos");
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -109,28 +110,28 @@ public class JDialogMngIList extends javax.swing.JDialog {
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
-        jButton2.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Modificar registro");
-        jButton2.setBorder(null);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setFocusPainted(false);
+        jButtonModify.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
+        jButtonModify.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonModify.setText("Modificar registro");
+        jButtonModify.setBorder(null);
+        jButtonModify.setContentAreaFilled(false);
+        jButtonModify.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonModify.setFocusPainted(false);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+            .addComponent(jButtonModify, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButtonModify, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 130, 20));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 130, 20));
 
         jTable.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         jTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -147,7 +148,7 @@ public class JDialogMngIList extends javax.swing.JDialog {
         jTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(jTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 600, 220));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 1310, 500));
 
         jPanelBgButton5.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -203,7 +204,37 @@ public class JDialogMngIList extends javax.swing.JDialog {
         });
         jPanel1.add(jComboBoxMonths, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 110, 20));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 430));
+        jPanel5.setBackground(new java.awt.Color(0, 0, 0));
+
+        jButtonDelete.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
+        jButtonDelete.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonDelete.setText("Eliminar registro");
+        jButtonDelete.setBorder(null);
+        jButtonDelete.setContentAreaFilled(false);
+        jButtonDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonDelete.setFocusPainted(false);
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButtonDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 130, 20));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, 768));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -245,6 +276,22 @@ public class JDialogMngIList extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_jComboBoxFiltersItemStateChanged
+
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        int selec = jTable.getSelectedRow();
+        int id;
+        if (selec == -1) {
+            JOptionPane.showMessageDialog(this, "Selecciona una fila de la tabla para eliminarla");
+            return;
+        } else {
+            id = (int) jTable.getValueAt(selec, 0);
+        }
+        if (rd.eliminarRegistro(id)) {
+            JOptionPane.showMessageDialog(this, "Registro eliminado exitosamente");
+        } else {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado");
+        }
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,8 +337,9 @@ public class JDialogMngIList extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonDelete;
+    private javax.swing.JButton jButtonModify;
     private javax.swing.JComboBox<String> jComboBoxFilters;
     private javax.swing.JComboBox<String> jComboBoxMonths;
     private com.toedter.calendar.JDateChooser jDateChooser;
@@ -300,13 +348,22 @@ public class JDialogMngIList extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanelBgButton5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable;
     // End of variables declaration//GEN-END:variables
 
     
-    
+    private void tablaSizes() {
+        TableColumnModel columnModel = jTable.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(40);
+        columnModel.getColumn(5).setPreferredWidth(100);
+        columnModel.getColumn(6).setPreferredWidth(80);
+        columnModel.getColumn(7).setPreferredWidth(100);
+        columnModel.getColumn(8).setPreferredWidth(250);
+        jTable.setRowHeight(30);
+    }
     
     private void fieldMonthVisibility() {
         jLabel3.setText("Mes:");
@@ -352,6 +409,7 @@ public class JDialogMngIList extends javax.swing.JDialog {
     }
 
     private void columns() {
+        table.addColumn("ID");
         table.addColumn("Fecha");
         table.addColumn("Dia");
         table.addColumn("Semana");
@@ -374,7 +432,7 @@ public class JDialogMngIList extends javax.swing.JDialog {
             if ((aux || dateParsed.equals(date)) && (aux2 || dateParsed.getMonthValue() == month) && r.getRegistro().equals("Ingreso")) {
                 String formatedDate = dateParsed.format(formatter);
                 Object[] filas = {
-                    formatedDate, r.getDia(), r.getSemana(), r.getRegistro(), r.getTipoRegistro(), r.getMonto(), r.getModoDePago(), r.getDetalles()
+                    r.getId(), formatedDate, r.getDia(), r.getSemana(), r.getRegistro(), r.getTipoRegistro(), r.getMonto(), r.getModoDePago(), r.getDetalles()
                 };
                 table.addRow(filas);
             }

@@ -6,6 +6,8 @@ package com.forraje.igu;
 
 import com.forraje.logica.Registro;
 import com.forraje.persistencia.RegistroData;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -43,14 +45,9 @@ public class JDialogMngEList extends javax.swing.JDialog {
         fillComboBox2();
         rows(null, 0);
         ((javax.swing.text.JTextComponent) jDateChooser.getDateEditor().getUiComponent()).setEditable(false);
-        TableColumnModel columnModel = jTable.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(100);
-        columnModel.getColumn(4).setPreferredWidth(100);
-        columnModel.getColumn(5).setPreferredWidth(80);
-        columnModel.getColumn(6).setPreferredWidth(100);
-        columnModel.getColumn(7).setPreferredWidth(250);
-        jTable.setRowHeight(30);
-
+        tablaSizes();
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screen);
     }
 
     /**
@@ -77,6 +74,7 @@ public class JDialogMngEList extends javax.swing.JDialog {
         jComboBoxMonths = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -130,7 +128,7 @@ public class JDialogMngEList extends javax.swing.JDialog {
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 130, 20));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 130, 20));
 
         jTable.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         jTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -147,7 +145,7 @@ public class JDialogMngEList extends javax.swing.JDialog {
         jTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(jTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 600, 220));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 1300, 500));
 
         jPanelBgButton5.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -203,7 +201,7 @@ public class JDialogMngEList extends javax.swing.JDialog {
         });
         jPanel1.add(jComboBoxMonths, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 110, 20));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 430));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, 768));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -308,7 +306,15 @@ public class JDialogMngEList extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     
-    
+    private void tablaSizes() {
+        TableColumnModel columnModel = jTable.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(100);
+        columnModel.getColumn(4).setPreferredWidth(100);
+        columnModel.getColumn(5).setPreferredWidth(80);
+        columnModel.getColumn(6).setPreferredWidth(100);
+        columnModel.getColumn(7).setPreferredWidth(250);
+        jTable.setRowHeight(30);
+    }
     
     private void fieldMonthVisibility() {
         jLabel3.setText("Mes:");
