@@ -73,6 +73,25 @@ public class RegistroData {
         }
         return listR;
     }
+    
+    public boolean eliminarRegistro(int id) {
+        String sql = "DELETE FROM Registro WHERE id = ?";
+        try (Connection conn = DbConexion.establecerConexion(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            if (conn == null) {
+                return false;
+            }
+            ps.setInt(1, id);
+            int filas = ps.executeUpdate();
+            if (filas > 0) {
+                System.out.println("[!] Se eliminó el registro con id " + id + " con exito");
+            } else {
+                System.out.println("[!] No se pudo eliminar el registro con id " + id);
+            }
+        } catch (SQLException err) {
+            System.out.println("[!] Ocurrio un error inesperado: " + err.getMessage());
+        }
+        return true;
+    }
 
     public double obtenerSaldoPorModoPago(String modoPago) {
         String sql = "SELECT SUM(CASE WHEN registro = 'Ingreso' THEN monto ELSE -monto END) AS saldo FROM Registro WHERE modo_pago = ?";
