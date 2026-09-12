@@ -291,6 +291,8 @@ public class JDialogMngIList extends javax.swing.JDialog {
         } else {
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado");
         }
+        jTable.clearSelection();
+        rows(jDateChooser.getDate() == null ? null : jDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 0);
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     /**

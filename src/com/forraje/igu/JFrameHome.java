@@ -35,8 +35,6 @@ public class JFrameHome extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanelBgButton2 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
-        jPanelBgButton3 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
         jPanelBgButton4 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jPanelBgButton5 = new javax.swing.JPanel();
@@ -80,14 +78,16 @@ public class JFrameHome extends javax.swing.JFrame {
         jPanelBgButton1.setLayout(jPanelBgButton1Layout);
         jPanelBgButton1Layout.setHorizontalGroup(
             jPanelBgButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+            .addGroup(jPanelBgButton1Layout.createSequentialGroup()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
         );
         jPanelBgButton1Layout.setVerticalGroup(
             jPanelBgButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanelBgButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 250, 30));
+        getContentPane().add(jPanelBgButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 250, 30));
 
         jPanelBgButton2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -109,38 +109,16 @@ public class JFrameHome extends javax.swing.JFrame {
         jPanelBgButton2.setLayout(jPanelBgButton2Layout);
         jPanelBgButton2Layout.setHorizontalGroup(
             jPanelBgButton2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+            .addGroup(jPanelBgButton2Layout.createSequentialGroup()
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 17, Short.MAX_VALUE))
         );
         jPanelBgButton2Layout.setVerticalGroup(
             jPanelBgButton2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanelBgButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 250, 30));
-
-        jPanelBgButton3.setBackground(new java.awt.Color(255, 255, 255));
-
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Quicksand Medium", 0, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 0, 0));
-        jButton3.setText("Ver división de fondos");
-        jButton3.setBorder(null);
-        jButton3.setContentAreaFilled(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.setFocusPainted(false);
-
-        javax.swing.GroupLayout jPanelBgButton3Layout = new javax.swing.GroupLayout(jPanelBgButton3);
-        jPanelBgButton3.setLayout(jPanelBgButton3Layout);
-        jPanelBgButton3Layout.setHorizontalGroup(
-            jPanelBgButton3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-        );
-        jPanelBgButton3Layout.setVerticalGroup(
-            jPanelBgButton3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanelBgButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 250, 30));
+        getContentPane().add(jPanelBgButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 250, 30));
 
         jPanelBgButton4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -162,14 +140,16 @@ public class JFrameHome extends javax.swing.JFrame {
         jPanelBgButton4.setLayout(jPanelBgButton4Layout);
         jPanelBgButton4Layout.setHorizontalGroup(
             jPanelBgButton4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+            .addGroup(jPanelBgButton4Layout.createSequentialGroup()
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
         );
         jPanelBgButton4Layout.setVerticalGroup(
             jPanelBgButton4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanelBgButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 250, 30));
+        getContentPane().add(jPanelBgButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 250, 30));
 
         jPanelBgButton5.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -323,7 +303,6 @@ public class JFrameHome extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1Background;
     private javax.swing.JLabel jLabelCurrency;
@@ -334,7 +313,6 @@ public class JFrameHome extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelBgButton1;
     private javax.swing.JPanel jPanelBgButton2;
-    private javax.swing.JPanel jPanelBgButton3;
     private javax.swing.JPanel jPanelBgButton4;
     private javax.swing.JPanel jPanelBgButton5;
     // End of variables declaration//GEN-END:variables
