@@ -14,15 +14,17 @@ import javax.swing.JOptionPane;
  *
  * @author dannita
  */
-public class JDialogRecord extends javax.swing.JDialog {
-    public RegistroData rd;
+public class JDialogUpdate extends javax.swing.JDialog {
+    private Registro r;
+    private RegistroData rd;
 
     /**
      * Creates new form JDialogRecord
      */
-    public JDialogRecord(java.awt.Frame parent, boolean modal) {
+    public JDialogUpdate(java.awt.Frame parent, boolean modal, Registro r) {
         super(parent, modal);
         initComponents();
+        this.r = r;
         rd = new RegistroData();
         Date date = fechaDefecto();
         fillComboBox1();
@@ -46,6 +48,7 @@ public class JDialogRecord extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jTextFieldWeek = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jTextFieldAmount = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jComboBoxChooserPay = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
@@ -59,7 +62,6 @@ public class JDialogRecord extends javax.swing.JDialog {
         jLabel8 = new javax.swing.JLabel();
         jComboBoxRecordType = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        jTextFieldAmount = new javax.swing.JTextField();
         jComboBoxRecord = new javax.swing.JComboBox<>();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -121,27 +123,32 @@ public class JDialogRecord extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 13)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Registro:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 60, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
+
+        jTextFieldAmount.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
+        jPanel1.add(jTextFieldAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 120, -1));
 
         jLabel6.setFont(new java.awt.Font("Roboto", 0, 13)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Monto:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
 
         jComboBoxChooserPay.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxChooserPay.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         jComboBoxChooserPay.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxChooserPay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxChooserPay.setBorder(null);
         jPanel1.add(jComboBoxChooserPay, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 120, -1));
 
         jLabel7.setFont(new java.awt.Font("Roboto", 0, 13)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Detalles:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
+        jTextAreaDetails.setBackground(new java.awt.Color(255, 255, 255));
         jTextAreaDetails.setColumns(20);
         jTextAreaDetails.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         jTextAreaDetails.setForeground(new java.awt.Color(0, 0, 0));
@@ -158,7 +165,7 @@ public class JDialogRecord extends javax.swing.JDialog {
         jButton1.setText("Cancelar");
         jButton1.setBorder(null);
         jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setFocusPainted(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,7 +184,7 @@ public class JDialogRecord extends javax.swing.JDialog {
             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 80, 20));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, 80, 20));
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -186,7 +193,7 @@ public class JDialogRecord extends javax.swing.JDialog {
         jButton2.setText("Guardar");
         jButton2.setBorder(null);
         jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setFocusPainted(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,7 +214,7 @@ public class JDialogRecord extends javax.swing.JDialog {
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, 80, 20));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 80, 20));
 
         jCheckBoxEnableDate.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         jCheckBoxEnableDate.setForeground(new java.awt.Color(0, 0, 0));
@@ -222,12 +229,13 @@ public class JDialogRecord extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("Roboto", 0, 13)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Modo de pago:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 90, -1));
 
         jComboBoxRecordType.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxRecordType.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         jComboBoxRecordType.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxRecordType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxRecordType.setBorder(null);
         jPanel1.add(jComboBoxRecordType, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 120, -1));
 
         jLabel9.setFont(new java.awt.Font("Roboto", 0, 13)); // NOI18N
@@ -235,13 +243,11 @@ public class JDialogRecord extends javax.swing.JDialog {
         jLabel9.setText("Tipo de registro:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
-        jTextFieldAmount.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
-        jPanel1.add(jTextFieldAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 120, -1));
-
         jComboBoxRecord.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBoxRecord.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        jComboBoxRecord.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         jComboBoxRecord.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxRecord.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxRecord.setBorder(null);
         jComboBoxRecord.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxRecordItemStateChanged(evt);
@@ -249,7 +255,7 @@ public class JDialogRecord extends javax.swing.JDialog {
         });
         jPanel1.add(jComboBoxRecord, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 120, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 360));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -318,44 +324,6 @@ public class JDialogRecord extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDialogRecord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDialogRecord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDialogRecord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDialogRecord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                JDialogRecord dialog = new JDialogRecord(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -412,19 +380,4 @@ public class JDialogRecord extends javax.swing.JDialog {
         jComboBoxChooserPay.addItem("Efectivo");
         jComboBoxChooserPay.addItem("Transferencia");
     }
-    
-    /*private void fillComboBox3() {
-        if (jComboBoxRecord.getSelectedItem().toString().equals("Ingreso")) {
-            jComboBoxRecordType.removeAllItems();
-            jComboBoxRecordType.addItem("Venta");
-            jComboBoxRecordType.addItem("Ajuste/Otro");
-            jComboBoxRecordType.addItem("Rendimiento");
-        } else if (jComboBoxRecord.getSelectedItem().toString().equals("Egreso")) {
-            jComboBoxRecordType.removeAllItems();
-            jComboBoxRecordType.addItem("Compra/Pago");
-            jComboBoxRecordType.addItem("Ajuste/Otro");
-        } else {
-            jComboBoxRecordType.removeAllItems();
-        }
-    }*/
 }

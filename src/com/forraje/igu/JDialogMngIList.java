@@ -117,6 +117,11 @@ public class JDialogMngIList extends javax.swing.JDialog {
         jButtonModify.setContentAreaFilled(false);
         jButtonModify.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonModify.setFocusPainted(false);
+        jButtonModify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModifyActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -294,6 +299,25 @@ public class JDialogMngIList extends javax.swing.JDialog {
         jTable.clearSelection();
         rows(jDateChooser.getDate() == null ? null : jDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 0);
     }//GEN-LAST:event_jButtonDeleteActionPerformed
+
+    private void jButtonModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModifyActionPerformed
+        int fila = jTable.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione una fila de tabla para actualizarla");
+            return;
+        } else {
+            int id = (int) jTable.getValueAt(fila, 0);
+            Registro r = rd.buscarRegistro(id);
+            if (r != null) {
+                JDialogUpdate jdu = new JDialogUpdate(null, true, r);
+                jdu.setLocationRelativeTo(null);
+                jdu.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Ocurrio un error inesperado con modificar el registro");
+                return;
+            }
+        }
+    }//GEN-LAST:event_jButtonModifyActionPerformed
 
     /**
      * @param args the command line arguments
