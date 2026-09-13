@@ -73,7 +73,7 @@ public class RegistroData {
         }
         return listR;
     }
-    
+
     public boolean eliminarRegistro(int id) {
         String sql = "DELETE FROM Registro WHERE id = ?";
         try (Connection conn = DbConexion.establecerConexion(); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -91,6 +91,61 @@ public class RegistroData {
             System.out.println("[!] Ocurrio un error inesperado: " + err.getMessage());
         }
         return true;
+    }
+
+    public boolean actualizarRegistro(Registro r) {
+        String sql = "UPDATE Registro SET fecha=?, dia=?, semana=?, registro=?, tipo_registro=?, monto=?, modo_pago=?, detalles=? WHERE id=?";
+        try (Connection conn = DbConexion.establecerConexion(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            if (conn == null) {
+                return false;
+            }
+            ps.setString(1, r.getFecha());
+            ps.setString(2, r.getDia());
+            ps.setInt(3, r.getSemana());
+            ps.setString(4, r.getRegistro());
+            ps.setString(5, r.getTipoRegistro());
+            ps.setDouble(6, r.getMonto());
+            ps.setString(7, r.getModoDePago());
+            ps.setString(8, r.getDetalles());
+            int filas = ps.executeUpdate();
+            if (filas > 0) {
+                System.out.println("[!] Se actualizó el registro con exito");
+            } else {
+                System.out.println("[!] No se pudo actualizar el registro");
+            }
+        } catch (SQLException err) {
+            System.out.println("[!] Ocurrio un error inesperado: " + err.getMessage());
+        }
+        return true;
+    }
+    
+    public Registro buscarRegistro(int id) {
+        String sql = "SELECT * FROM Registro WHERE id = ?";
+        try(Connection conn = DbConexion.establecerConexion(); PreparedStatement ps = conn.prepareStatement(sql)) {
+            if (conn == null) {
+                return null;
+            }
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                r.setId(rs.getInt("id"));
+                String fechaStr = rs.getString("fecha");
+                LocalDate fechaParsed = LocalDate.parse(fechaStr);
+                r.setFecha(fechaParsed);
+                r.setDia(rs.getString("dia"));
+                r.setSemana(rs.getInt("semana"));
+                r.setRegistro(rs.getString("registro"));
+                r.setTipoRegistro(rs.getString("tipo_registro"));
+                r.setMonto(rs.getDouble("monto"));
+                r.setModoDePago(rs.getString("modo_pago"));
+                r.setDetalles(rs.getString("detalles"));
+            } else {
+                System.out.println("[!] No se pudo encontrar el registro con id " + id);
+            }
+        } catch (SQLException err) {
+            System.out.println("[!] Ocurrio un error inesperado: " + err.getMessage());
+        }
+        return r;
     }
 
     public double obtenerSaldoPorModoPago(String modoPago) {

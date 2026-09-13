@@ -18,6 +18,7 @@ public class Registro {
     private String modoDePago;
     private String detalles;
     
+    public Registro(){}
     public Registro(LocalDate f, String d, int s, String reg, String tipoReg, double mon, String modo, String details) {
         fecha = f;
         dia = d;
@@ -31,6 +32,38 @@ public class Registro {
     
     public void setId(int id){
         this.id = id;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setDia(String dia) {
+        this.dia = dia;
+    }
+
+    public void setSemana(int semana) {
+        this.semana = semana;
+    }
+
+    public void setRegistro(String registro) {
+        this.registro = registro;
+    }
+
+    public void setTipoRegistro(String tipoRegistro) {
+        this.tipoRegistro = tipoRegistro;
+    }
+
+    public void setMonto(double monto) {
+        this.monto = monto;
+    }
+
+    public void setModoDePago(String modoDePago) {
+        this.modoDePago = modoDePago;
+    }
+
+    public void setDetalles(String detalles) {
+        this.detalles = detalles;
     }
 
     public int getId() {
