@@ -93,7 +93,7 @@ public class RegistroData {
         return true;
     }
 
-    public boolean actualizarRegistro(Registro r) {
+    public boolean actualizarRegistro(int id, Registro r) {
         String sql = "UPDATE Registro SET fecha=?, dia=?, semana=?, registro=?, tipo_registro=?, monto=?, modo_pago=?, detalles=? WHERE id=?";
         try (Connection conn = DbConexion.establecerConexion(); PreparedStatement ps = conn.prepareStatement(sql)) {
             if (conn == null) {
@@ -107,11 +107,12 @@ public class RegistroData {
             ps.setDouble(6, r.getMonto());
             ps.setString(7, r.getModoDePago());
             ps.setString(8, r.getDetalles());
+            ps.setInt(9, id);
             int filas = ps.executeUpdate();
             if (filas > 0) {
                 System.out.println("[!] Se actualizó el registro con exito");
             } else {
-                System.out.println("[!] No se pudo actualizar el registro");
+                System.out.println("[!] No se pudo actualizar el registro con el id " + r.getId());
             }
         } catch (SQLException err) {
             System.out.println("[!] Ocurrio un error inesperado: " + err.getMessage());

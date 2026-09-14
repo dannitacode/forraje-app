@@ -15,8 +15,9 @@ import javax.swing.JOptionPane;
  * @author dannita
  */
 public class JDialogUpdate extends javax.swing.JDialog {
-    private Registro r;
+
     private RegistroData rd;
+    private Registro reg = new Registro();
 
     /**
      * Creates new form JDialogRecord
@@ -24,11 +25,11 @@ public class JDialogUpdate extends javax.swing.JDialog {
     public JDialogUpdate(java.awt.Frame parent, boolean modal, Registro r) {
         super(parent, modal);
         initComponents();
-        this.r = r;
-        rd = new RegistroData();
-        Date date = fechaDefecto();
         fillComboBox1();
         fillComboBox2();
+        this.rd = new RegistroData();
+        this.reg = r;
+        fillFields(r);
     }
 
     /**
@@ -269,7 +270,7 @@ public class JDialogUpdate extends javax.swing.JDialog {
     }//GEN-LAST:event_jCheckBoxEnableDateActionPerformed
 
     private void jDateChooserPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooserPropertyChange
-        if("date".equals(evt.getPropertyName())) {
+        if ("date".equals(evt.getPropertyName())) {
             Date date = jDateChooser.getDate();
             diaDefecto(date);
             semanaDefecto(date);
@@ -289,21 +290,18 @@ public class JDialogUpdate extends javax.swing.JDialog {
         String modoPago = (String) jComboBoxChooserPay.getSelectedItem();
         String detalles = jTextAreaDetails.getText();
         try {
-           double monto = Double.parseDouble(jTextFieldAmount.getText());
-           boolean flag = rd.crearRegistro(new Registro(date, dia, semana, registro, tipoRegistro, monto, modoPago, detalles));
-           if(flag){
-               int confirm = JOptionPane.showConfirmDialog(this, "Registro creado con exito! ¿Desea crear otro?", "Success", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-               switch(confirm){
-                   case JOptionPane.NO_OPTION:
-                       dispose();
-                   case JOptionPane.YES_OPTION:
-                       jTextFieldAmount.setText(null);
-                       break;
-               }
-           }
-        }catch (NumberFormatException nfe){
-           JOptionPane.showMessageDialog(this, "Ingrese un monto valido!");
-       }
+            double monto = Double.parseDouble(jTextFieldAmount.getText());
+            boolean flag = rd.actualizarRegistro(reg.getId(), new Registro(date, dia, semana, registro, tipoRegistro, monto, modoPago, detalles));
+            if (flag) {
+                JOptionPane.showMessageDialog(this, "Registro actualizado con exito!");
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Ocurrio un error inesperado con actualizar el registro");
+                return;
+            }
+        } catch (NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(this, "Ingrese un monto valido!");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBoxRecordItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxRecordItemStateChanged
@@ -314,6 +312,9 @@ public class JDialogUpdate extends javax.swing.JDialog {
                 jComboBoxRecordType.addItem("Venta");
                 jComboBoxRecordType.addItem("Ajuste/Otro");
                 jComboBoxRecordType.addItem("Rendimiento");
+                if (reg.getTipoRegistro() != null) {
+                    jComboBoxRecordType.setSelectedItem(reg.getTipoRegistro());
+                }
             } else if (selec.equals("Egreso")) {
                 jComboBoxRecordType.addItem("Compra/Pago");
                 jComboBoxRecordType.addItem("Ajuste/Otro");
@@ -353,31 +354,68 @@ public class JDialogUpdate extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldWeek;
     // End of variables declaration//GEN-END:variables
 
-    private Date fechaDefecto() {
-        LocalDate date = LocalDate.now();
-        Date dateDate = java.sql.Date.valueOf(date);
-        jDateChooser.setDate(dateDate);
-        return dateDate;
+    private void fillFields(Registro reg) {
+        if (reg != null) {
+            // Fecha
+            LocalDate parsed = LocalDate.parse(reg.getFecha());
+            Date dateDate = java.sql.Date.valueOf(parsed);
+            jDateChooser.setDate(dateDate);
+            // Dia
+            jTextFieldDay.setText(reg.getDia());
+            // Semana
+            jTextFieldWeek.setText(String.valueOf(reg.getSemana()));
+            // Registro
+            jComboBoxRecord.setSelectedIndex(0);
+            // Tipo
+            String regis = reg.getRegistro();
+            if (regis.equals("Ingreso")) {
+                if (reg.getTipoRegistro().equals("Venta")) {
+                    jComboBoxRecordType.setSelectedIndex(0);
+                } else if (reg.getTipoRegistro().equals("Ajuste/Otro")) {
+                    jComboBoxRecordType.setSelectedIndex(1);
+                } else {
+                    jComboBoxRecordType.setSelectedIndex(2);
+                }
+            }
+            // Monto
+            jTextFieldAmount.setText(String.valueOf(reg.getMonto()));
+            // Modo de pago
+            if (reg.getModoDePago().equals("Efectivo")) {
+                jComboBoxChooserPay.setSelectedIndex(0);
+            } else {
+                jComboBoxChooserPay.setSelectedIndex(1);
+            }
+            // Detalles
+            jTextAreaDetails.setText(reg.getDetalles());
+        }
+
     }
+
     private void diaDefecto(Date date) {
         LocalDate day = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         String dayName = day.getDayOfWeek().getDisplayName(TextStyle.FULL, new Locale("es", "ES"));
         jTextFieldDay.setText(dayName);
     }
-    private void semanaDefecto(Date date){
+
+    private void semanaDefecto(Date date) {
         LocalDate week = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         WeekFields regWeeks = WeekFields.of(Locale.getDefault());
         int weekNumber = week.get(regWeeks.weekOfWeekBasedYear());
         jTextFieldWeek.setText(String.valueOf(weekNumber));
     }
-    private void fillComboBox1(){
+
+    private void fillComboBox1() {
         jComboBoxRecord.removeAllItems();
         jComboBoxRecord.addItem("Ingreso");
         jComboBoxRecord.addItem("Egreso");
     }
-    private void fillComboBox2(){
+
+    private void fillComboBox2() {
         jComboBoxChooserPay.removeAllItems();
         jComboBoxChooserPay.addItem("Efectivo");
         jComboBoxChooserPay.addItem("Transferencia");
+        if (reg.getModoDePago() != null) {
+            jComboBoxRecordType.setSelectedItem(reg.getModoDePago());
+        }
     }
 }
