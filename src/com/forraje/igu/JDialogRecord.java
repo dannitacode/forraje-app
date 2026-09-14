@@ -224,7 +224,7 @@ public class JDialogRecord extends javax.swing.JDialog {
                 jCheckBoxEnableDateActionPerformed(evt);
             }
         });
-        jPanel1.add(jCheckBoxEnableDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, -1, -1));
+        jPanel1.add(jCheckBoxEnableDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 130, -1));
 
         jLabel8.setFont(new java.awt.Font("Roboto", 0, 13)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));

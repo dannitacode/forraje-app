@@ -76,6 +76,13 @@ public class JDialogMngEList extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -115,6 +122,11 @@ public class JDialogMngEList extends javax.swing.JDialog {
         jButton2.setContentAreaFilled(false);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setFocusPainted(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -292,6 +304,29 @@ public class JDialogMngEList extends javax.swing.JDialog {
         jTable.clearSelection();
         rows(jDateChooser.getDate() == null ? null : jDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 0);
     }//GEN-LAST:event_jButtonDeleteActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int fila = jTable.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione una fila de tabla para actualizarla");
+            return;
+        } else {
+            int id = (int) jTable.getValueAt(fila, 0);
+            Registro r = rd.buscarRegistro(id);
+            if (r != null) {
+                JDialogUpdate jdu = new JDialogUpdate(null, true, r);
+                jdu.setLocationRelativeTo(null);
+                jdu.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Ocurrio un error inesperado con modificar el registro");
+                return;
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        rows(jDateChooser.getDate() == null ? null : jDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 0);
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments

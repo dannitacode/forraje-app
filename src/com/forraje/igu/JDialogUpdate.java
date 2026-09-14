@@ -84,7 +84,7 @@ public class JDialogUpdate extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Nuevo registro");
+        jLabel1.setText("Actualizar registro");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 370, -1));
 
         jLabel2.setFont(new java.awt.Font("Roboto", 0, 13)); // NOI18N
@@ -307,18 +307,19 @@ public class JDialogUpdate extends javax.swing.JDialog {
     private void jComboBoxRecordItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxRecordItemStateChanged
         if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
             jComboBoxRecordType.removeAllItems();
+            if (reg.getTipoRegistro() != null) {
+                jComboBoxRecordType.setSelectedItem(reg.getTipoRegistro());
+            }
             String selec = (String) jComboBoxRecord.getSelectedItem();
             if (selec.equals("Ingreso")) {
                 jComboBoxRecordType.addItem("Venta");
                 jComboBoxRecordType.addItem("Ajuste/Otro");
                 jComboBoxRecordType.addItem("Rendimiento");
-                if (reg.getTipoRegistro() != null) {
-                    jComboBoxRecordType.setSelectedItem(reg.getTipoRegistro());
-                }
             } else if (selec.equals("Egreso")) {
                 jComboBoxRecordType.addItem("Compra/Pago");
                 jComboBoxRecordType.addItem("Ajuste/Otro");
             }
+            
         }
     }//GEN-LAST:event_jComboBoxRecordItemStateChanged
 
@@ -365,7 +366,11 @@ public class JDialogUpdate extends javax.swing.JDialog {
             // Semana
             jTextFieldWeek.setText(String.valueOf(reg.getSemana()));
             // Registro
-            jComboBoxRecord.setSelectedIndex(0);
+            if (reg.getRegistro().equals("Ingreso")) {
+                jComboBoxRecord.setSelectedIndex(0);
+            } else {
+                jComboBoxRecord.setSelectedIndex(1);
+            }
             // Tipo
             String regis = reg.getRegistro();
             if (regis.equals("Ingreso")) {
@@ -375,6 +380,12 @@ public class JDialogUpdate extends javax.swing.JDialog {
                     jComboBoxRecordType.setSelectedIndex(1);
                 } else {
                     jComboBoxRecordType.setSelectedIndex(2);
+                }
+            } else {
+                if (reg.getTipoRegistro().equals("Compra/Pago")) {
+                    jComboBoxRecordType.setSelectedIndex(0);
+                } else {
+                    jComboBoxRecordType.setSelectedIndex(1);
                 }
             }
             // Monto

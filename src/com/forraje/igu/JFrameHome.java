@@ -151,17 +151,17 @@ public class JFrameHome extends javax.swing.JFrame {
 
         getContentPane().add(jPanelBgButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 250, 30));
 
-        jPanelBgButton5.setBackground(new java.awt.Color(51, 51, 51));
+        jPanelBgButton5.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabelEfect.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
-        jLabelEfect.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelEfect.setFont(new java.awt.Font("Noto Sans", 0, 20)); // NOI18N
+        jLabelEfect.setForeground(new java.awt.Color(0, 0, 0));
         jLabelEfect.setText("Efectivo:");
 
-        jLabelVirtual.setFont(new java.awt.Font("Quicksand Medium", 1, 18)); // NOI18N
-        jLabelVirtual.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelVirtual.setText("BIlletera virtual:");
+        jLabelVirtual.setFont(new java.awt.Font("Noto Sans", 0, 20)); // NOI18N
+        jLabelVirtual.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelVirtual.setText("Billetera virtual:");
 
-        jLabelCurrency.setFont(new java.awt.Font("Quicksand Light", 1, 18)); // NOI18N
+        jLabelCurrency.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         jLabelCurrency.setForeground(new java.awt.Color(0, 0, 0));
         jLabelCurrency.setText("jLabel3");
 
@@ -182,7 +182,7 @@ public class JFrameHome extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabelCurrency2.setFont(new java.awt.Font("Quicksand Light", 1, 18)); // NOI18N
+        jLabelCurrency2.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         jLabelCurrency2.setForeground(new java.awt.Color(0, 0, 0));
         jLabelCurrency2.setText("jLabel3");
 
@@ -215,22 +215,22 @@ public class JFrameHome extends javax.swing.JFrame {
             .addGroup(jPanelBgButton5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelBgButton5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelEfect)
-                    .addComponent(jLabelVirtual))
+                    .addComponent(jLabelVirtual)
+                    .addComponent(jLabelEfect))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelBgButton5Layout.setVerticalGroup(
             jPanelBgButton5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBgButton5Layout.createSequentialGroup()
-                .addGap(76, 76, 76)
+                .addGap(82, 82, 82)
                 .addComponent(jLabelEfect)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
+                .addGap(61, 61, 61)
                 .addComponent(jLabelVirtual)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanelBgButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 230, 430));
